@@ -25,31 +25,41 @@ $("#submit").on("click", function(event) {
  
 
 var newTrainName = $("#train-name").val().trim();
-
+var newDestination = $("#destination").val().trim();
+var traintime=$("#firsttime").val().trim();
+var frequency=$("#frequency").val().trim();
 
 
 var newTrainlineTemp = {
-						train:newTrainName
+						train:newTrainName,
+            destination:newDestination,
+            traintime:traintime,
+            frequency:frequency,
 						};
 
 database.ref().push(newTrainlineTemp);
 
 
 
-
-
-
-console.log(newTrainlineTemp.name);
-
-
+console.log(newTrainlineTemp.newTrainName);
 $("#train-name").empty()
-
+$("#destination").empty()
+$("#firsttime").empty()
+$("#frequency").empty()
 });
-
-
 
 
 database.ref().on("child_added" , function
 	(childSnapshot, prevChildKey) {
 console.log(childSnapshot.val());
+var newTrainName = childSnapshot.val().train;
+
+console.log(newTrainName);
+
 });
+
+
+
+
+
+
