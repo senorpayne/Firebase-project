@@ -43,5 +43,5 @@ dataRef.ref().on("child_added", function(childSnapshot) {
   var tRemainder = diffTime % frequencyHolder;
   var tMinutesTillTrain = frequencyHolder - tRemainder;
   var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-$("#traintable > tbody").prepend("<tr><td>" + trainHolder + "</td><td>" + destinationHolder + "</td><td>" + frequencyHolder + "</td><td>" +moment(nextTrain).format("hh:mm")+ "</td><td>"+tMinutesTillTrain+"</td></tr>")
+$("#traintable > tbody").prepend("<tr><td>" + trainHolder + "</td><td>" + destinationHolder + "</td><td>" + frequencyHolder + "</td><td>" +moment(nextTrain).format("hh:mm")+ "</td><td>"+tMinutesTillTrain+"</td></tr>");
 });
