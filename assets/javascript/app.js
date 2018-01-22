@@ -15,7 +15,7 @@ $('#textarea1').val('New Text');
   };
   firebase.initializeApp(config);
 
-var database = firebase.database();
+var dataRef = firebase.database();
 var newTrainline = "";
 
 
@@ -37,7 +37,7 @@ var newTrainlineTemp = {
             frequency:frequency,
 						};
 
-database.ref().push(newTrainlineTemp);
+dataRef.ref().push(newTrainlineTemp);
 
 
 
@@ -49,12 +49,17 @@ $("#frequency").empty()
 });
 
 
-database.ref().on("child_added" , function
-	(childSnapshot, prevChildKey) {
-console.log(childSnapshot.val());
+dataRef.ref().on("child_added" , function
+	(childSnapshot) {
+console.log(childSnapshot);
 var newTrainName = childSnapshot.val().train;
 
 console.log(newTrainName);
+console.log(childSnapshot);
+console.log(moment());
+
+$("#traintable > tbody").append("<tr><td>" + newTrainName + "</td><td>" )
+ // + newDestination + "</td><td>" + traintime + "</td><td>" +frequency+"</td></tr>")
 
 });
 
