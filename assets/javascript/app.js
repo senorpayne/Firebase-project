@@ -32,10 +32,10 @@ var newTrainlineTemp = {
 dataRef.ref().push(newTrainlineTemp);
 //$("#traintable > tbody").append("<tr><td>" + newTrainName + "</td><td>" + newDestination + "</td><td>" + frequency + "</td><td>" +moment(nextTrain).format("hh:mm")+ "</td><td>"+tMinutesTillTrain+"</td></tr>");
 
-$("#train-name").empty()
-$("#destination").empty()
-$("#firsttime").empty()
-$("#frequency").empty()
+$("#train-name").val('')
+$("#destination").val('')
+$("#firsttime").val('')
+$("#frequency").val('')
 });
 
 dataRef.ref().on("child_added", function(childSnapshot) {
