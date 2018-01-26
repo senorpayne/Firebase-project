@@ -1,4 +1,5 @@
 
+$(document).ready(function(){
 $('#textarea1').val('New Text');
   $('#textarea1').trigger('autoresize');
   // Initialize Firebase
@@ -20,18 +21,23 @@ var newTrainName = $("#train-name").val().trim();
 var newDestination = $("#destination").val().trim();
 var traintime=$("#firsttime").val().trim();
 var frequency=$("#frequency").val().trim();
+
 var newTrainlineTemp = {
                         train: newTrainName,
-            destination: newDestination,
-            traintime: traintime,
-            frequency: frequency
+                  destination: newDestination,
+                    traintime: traintime,
+                    frequency: frequency
                         };
+
 dataRef.ref().push(newTrainlineTemp);
+//$("#traintable > tbody").append("<tr><td>" + newTrainName + "</td><td>" + newDestination + "</td><td>" + frequency + "</td><td>" +moment(nextTrain).format("hh:mm")+ "</td><td>"+tMinutesTillTrain+"</td></tr>");
+
 $("#train-name").empty()
 $("#destination").empty()
 $("#firsttime").empty()
 $("#frequency").empty()
 });
+
 dataRef.ref().on("child_added", function(childSnapshot) {
   var trainHolder = childSnapshot.val().train;
   var destinationHolder = childSnapshot.val().destination;
@@ -43,5 +49,9 @@ dataRef.ref().on("child_added", function(childSnapshot) {
   var tRemainder = diffTime % frequencyHolder;
   var tMinutesTillTrain = frequencyHolder - tRemainder;
   var nextTrain = moment().add(tMinutesTillTrain, "minutes");
-$("#traintable > tbody").prepend("<tr><td>" + trainHolder + "</td><td>" + destinationHolder + "</td><td>" + frequencyHolder + "</td><td>" +moment(nextTrain).format("hh:mm")+ "</td><td>"+tMinutesTillTrain+"</td></tr>");
+$("#traintable > tbody").append("<tr><td>" + trainHolder + "</td><td>" + destinationHolder + "</td><td>" + frequencyHolder + "</td><td>" +moment(nextTrain).format("hh:mm")+ "</td><td>"+tMinutesTillTrain+"</td></tr>");
+
 });
+
+});
+
